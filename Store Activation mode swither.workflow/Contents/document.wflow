@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>AMApplicationBuild</key>
-	<string>428</string>
+	<string>444.39</string>
 	<key>AMApplicationVersion</key>
-	<string>2.7</string>
+	<string>2.9</string>
 	<key>AMDocumentVersion</key>
 	<string>2</string>
 	<key>actions</key>
@@ -59,18 +59,17 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>if [ `defaults read com.apple.iTunes StoreActivationMode` -eq 0 ]
-then
+					<string>#!/bin/bash
+
+CurrentMode="$( defaults read com.apple.iTunes StoreActivationMode 2&gt; /dev/null )"
+
+if [ "${CurrentMode:-0}" -eq 0 ]; then
 	defaults write com.apple.iTunes StoreActivationMode -int 1
 	modestate="ON"
 else
 	defaults write com.apple.iTunes StoreActivationMode -int 0
 	modestate="OFF"
 fi
-
-# defaults read com.apple.iTunes StoreActivationMode
-
-
 
 osascript &lt;&lt;EndOfMyScript
 tell application "System Events"
@@ -189,9 +188,9 @@ EndOfMyScript</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>605.500000:185.000000</string>
+				<string>309.000000:643.000000</string>
 				<key>nibPath</key>
-				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
+				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
 			<key>isViewVisible</key>
 			<true/>
